@@ -1,0 +1,250 @@
+body{
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #121212;
+    background-color: #ffffff
+}
+
+
+/*header*/
+
+.header{
+    width: auto;
+    padding: 0px;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+
+.header-title{
+    margin: 0;
+    font-size: 35px;
+    color: #121212;
+    text-align: center;
+}
+
+
+/*nav*/
+
+.nav-btn{
+    text-align: center;
+    background-color: #35399f;
+}
+
+.nav-linkBtn{
+    display: inline-block;
+    padding: 8px 12px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+.nav-linkBtn:hover, .nav-linkBtn:focus {
+    background-color: #c9c9c9;
+    color: #000000;
+}
+
+
+/*table*/
+
+.th{
+    border-color: black;
+}
+
+.t-head{
+    text-align: center;
+    border-bottom: black;
+}
+.tr-head{
+    text-align: center;
+    border-color: black;
+}
+/*btn*/
+
+.btn-edit{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #dbdbdb;
+    border: 1px solid #b4b4b4;
+    cursor: pointer;
+    border-radius: 8px;
+
+}
+
+
+.btn-form{
+    display: inline-block;
+}
+
+
+.btn-edit:hover, .btn-edit:focus {
+    background-color: #c5ced3;
+    outline: 0;
+}
+
+
+/*table-grades*/
+
+.table-grades{
+    
+    text-align: center;
+    border: 1px solid #000;
+    border-collapse: collapse; 
+}
+
+
+.table-grades th{
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+
+.table-grades td{
+    padding: 5px;
+    border: 1px solid #000; 
+}
+
+
+input{
+    width: 100%;
+    height: 100%;
+}
+
+
+/*student*/
+
+.student{
+    margin: 10px 5px;
+    font-size: 20px;
+    color: #121212;
+}
+
+
+/*dropdown*/
+/* Кнопка выпадающего списка */
+
+.dropbtn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+    background-color: #dbdbdb;
+    border: 1px solid #b4b4b4;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
+/* Кнопка выпадающего меню при наведении и фокусировке */
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #c5ced3;
+    outline: 0;
+}
+
+
+/* Контейнер <div> - необходим для размещения выпадающего содержимого */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Выпадающее содержимое (скрыто по умолчанию) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+/* Ссылки внутри выпадающего списка */
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Изменение цвета выпадающих ссылок при наведении курсора */
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
+/* Показать выпадающее меню */
+
+.show {
+    display:block;
+}
+
+/*select*/
+.select{
+    margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*img*/
+
+.img{
+     position: absolute;
+     right: 55px;
+     top: 10px;
+     padding: 0;
+     margin: 0;
+     width: 50px;
+     height: 50px;
+
+}
+
+
+/*Profile*/
+
+.profile{
+    position: absolute;
+    right: 21px;
+    top: 69px;
+
+}
+
+.profile-btn{
+    display: inline-block;
+    padding: 1px 3px;
+    color: #121212;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #dbdbdb;
+    border: 1px solid #b4b4b4;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
+.profile-btn:hover, .profile-btn:focus {
+    background-color: #c5ced3;
+    outline: 0;
+}
+
+.user {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 125px;
+    top: 20px;
+}
