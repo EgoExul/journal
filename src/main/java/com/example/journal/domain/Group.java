@@ -5,18 +5,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "group")
+public class Group {
     @Id
     private Long id;
-    private String role;
+    private String name;
 
-    public User(){
+    public Group(){
     }
 
-    public User(Long id, String role) {
+    public Group(Long id, String name) {
         this.id = id;
-        this.role = role;
+        this.name = name;
     }
 
     public Long getId() {
@@ -27,11 +27,11 @@ public class User {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
 }

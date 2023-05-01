@@ -1,9 +1,9 @@
 package com.example.journal.repository;
 
-import com.example.journal.domain.User;
+import com.example.journal.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 }
