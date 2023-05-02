@@ -17,10 +17,10 @@ public class SubjectService {
     }
 
     public List<Subject> getAll() {
-//        return repository.findAll();
-        return List.of(
-                new Subject(1L, "Системы исксственного интелекта"),
-                new Subject(2L, "Математический анализ")
-        );
+        return repository.findAll();
+//        return List.of(
+//                new Subject(1L, "Системы исксственного интелекта"),
+//                new Subject(2L, "Математический анализ")
+//        );
     }
 }

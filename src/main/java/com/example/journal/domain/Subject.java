@@ -1,13 +1,12 @@
 package com.example.journal.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "subjects")
 public class Subject {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
 
