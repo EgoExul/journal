@@ -1,13 +1,10 @@
 package com.example.journal.controller;
 
-import com.example.journal.domain.Subject;
 import com.example.journal.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 public class TestController {

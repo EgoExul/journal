@@ -6,14 +6,16 @@ import jakarta.persistence.*;
 @Table(name = "\"user\"")
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
-    public User(){
+    public User() {
     }
 
-    public User(Long id, String role) {
+    public User(Long id, Role role) {
         this.id = id;
         this.role = role;
     }
@@ -26,11 +28,11 @@ public class User {
         this.id = id;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
