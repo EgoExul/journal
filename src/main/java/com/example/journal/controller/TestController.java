@@ -1,24 +1,23 @@
 package com.example.journal.controller;
 
+import com.example.journal.service.GroupService;
 import com.example.journal.service.SubjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequiredArgsConstructor
 @Controller
 public class TestController {
 
-    private final SubjectService service;
-
-    @Autowired
-    public TestController(SubjectService service) {
-        this.service = service;
-    }
+    private final SubjectService subjectService;
+    private final GroupService groupService;
 
     @RequestMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("subjects", service.getAll());
+        model.addAttribute("subjects", subjectService.getAll());
+        model.addAttribute("groups", groupService.getAll());
         return "term2si";
     }
 

@@ -27,9 +27,14 @@
                 <a th:text="${subject.name}" href="term2ma.html"/>
             </div>
         </div>
+
             <tr th:each="subject : ${subjects}">
                 <td th:text="${subject.name}">1</td>
             </tr>
+        <tr th:each="group : ${groups}">
+            <td th:text="${group.name}">1</td>
+        </tr>
+
         <div class="dropdown">
             <button onclick="myFunction2()" class="dropbtn">Группа №2</button>
 
