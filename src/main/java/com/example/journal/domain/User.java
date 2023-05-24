@@ -1,16 +1,14 @@
 package com.example.journal.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Set;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -22,18 +20,20 @@ public class User {
     private Long id;
     @Column(name = "first_name")
     private String firstName;
+    @Column(name = "middle_name")
     private String middleName;
+    @Column(name = "last_name")
     private String lastName;
     private String email;
     private String password;
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
-    @OneToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "users")
+    private Set<Group> groups;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Score> scores;
-
+    @ManyToMany(mappedBy = "users")
+    private Set<Subject> subjects;
 
 }

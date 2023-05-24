@@ -1,5 +1,7 @@
 package com.example.journal.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,8 +25,10 @@ public class Score {
     private int value;
     @Enumerated(EnumType.STRING)
     private Type type;
-    private Instant date;
+    private Instant dueDate;
+    private Instant passDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

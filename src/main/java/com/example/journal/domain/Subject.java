@@ -1,11 +1,9 @@
 package com.example.journal.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.time.Period;
 import java.util.List;
 import java.util.Set;
 
@@ -21,8 +19,16 @@ public class Subject {
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "subjects")
+    @ToString.Exclude
     private List<Group> groups;
     @OneToMany(mappedBy = "subject")
     private Set<Score> scores;
+    private Period period;
+    @ManyToMany
+    @JoinTable(
+            name = "subject_user",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users;
 
 }
