@@ -44,22 +44,6 @@ function disable() {
             document.getElementById("score18").disabled = true; document.getElementById("score-18").disabled = true;
             document.getElementById("score19").disabled = true; document.getElementById("score-19").disabled = true;
             document.getElementById("score20").disabled = true; document.getElementById("score-20").disabled = true;
-            document.getElementById("score21").disabled = true; document.getElementById("score-21").disabled = true;
-            document.getElementById("score22").disabled = true; document.getElementById("score-22").disabled = true;
-            document.getElementById("score23").disabled = true; document.getElementById("score-23").disabled = true;
-
-            document.getElementById("score24").disabled = true; document.getElementById("score-24").disabled = true;
-            document.getElementById("score25").disabled = true; document.getElementById("score-25").disabled = true;
-            document.getElementById("score26").disabled = true; document.getElementById("score-26").disabled = true;
-            document.getElementById("score27").disabled = true; document.getElementById("score-27").disabled = true;
-            document.getElementById("score28").disabled = true; document.getElementById("score-28").disabled = true;
-            document.getElementById("score29").disabled = true; document.getElementById("score-29").disabled = true;
-            document.getElementById("score30").disabled = true; document.getElementById("score-30").disabled = true;
-            document.getElementById("score31").disabled = true; document.getElementById("score-31").disabled = true;
-            document.getElementById("score32").disabled = true; document.getElementById("score-32").disabled = true;
-            document.getElementById("score33").disabled = true; document.getElementById("score-33").disabled = true;
-            document.getElementById("score34").disabled = true; document.getElementById("score-34").disabled = true;
-            document.getElementById("score35").disabled = true; document.getElementById("score-35").disabled = true;
 
         }
 function enable() {
@@ -85,22 +69,6 @@ function enable() {
             document.getElementById("score18").disabled = false; document.getElementById("score-18").disabled = false;
             document.getElementById("score19").disabled = false; document.getElementById("score-19").disabled = false;
             document.getElementById("score20").disabled = false; document.getElementById("score-20").disabled = false;
-            document.getElementById("score21").disabled = false; document.getElementById("score-21").disabled = false;
-            document.getElementById("score22").disabled = false; document.getElementById("score-22").disabled = false;
-            document.getElementById("score23").disabled = false; document.getElementById("score-23").disabled = false;
-
-            document.getElementById("score24").disabled = false; document.getElementById("score-24").disabled = false;
-            document.getElementById("score25").disabled = false; document.getElementById("score-25").disabled = false;
-            document.getElementById("score26").disabled = false; document.getElementById("score-26").disabled = false;
-            document.getElementById("score27").disabled = false; document.getElementById("score-27").disabled = false;
-            document.getElementById("score28").disabled = false; document.getElementById("score-28").disabled = false;
-            document.getElementById("score29").disabled = false; document.getElementById("score-29").disabled = false;
-            document.getElementById("score30").disabled = false; document.getElementById("score-30").disabled = false;
-            document.getElementById("score31").disabled = false; document.getElementById("score-31").disabled = false;
-            document.getElementById("score32").disabled = false; document.getElementById("score-32").disabled = false;
-            document.getElementById("score33").disabled = false; document.getElementById("score-33").disabled = false;
-            document.getElementById("score34").disabled = false; document.getElementById("score-34").disabled = false;
-            document.getElementById("score35").disabled = false; document.getElementById("score-35").disabled = false;
 
         };
 

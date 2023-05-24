@@ -74,12 +74,21 @@ body{
     border: 1px solid #b4b4b4;
     cursor: pointer;
     border-radius: 8px;
+}
+
+.btn-download{
+    display: inline-block;
+    position: relative;
+    float: right;
+    margin-right: 10px;
 
 }
 
 
 .btn-form{
     display: inline-block;
+    float: right;
+    margin-right: 10px;
 }
 
 

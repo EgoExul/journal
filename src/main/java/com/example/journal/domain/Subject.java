@@ -16,7 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name = "subjects")
 public class Subject {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
