@@ -5,6 +5,7 @@ import com.example.journal.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -15,5 +16,9 @@ public class GroupService {
 
     public List<Group> getAll() {
         return repository.findAll();
+    }
+
+    public List<Group> getAllByUserId(Long userId) {
+        return repository.findAllByUsersIn(Collections.singletonList(userId));
     }
 }
