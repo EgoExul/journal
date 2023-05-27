@@ -26,7 +26,6 @@ public class JournalController {
         model.addAttribute("user", user);
         model.addAttribute("subjects", subjectService.getAllByUserId(id));
         model.addAttribute("groups", groupService.getAllByUserId(id));
-        return "teacher-journal.html";
         if (user.getRole().getId() == 1L) {return "teacher-journal.html";
         } else {return "student-journal.html";
         }
