@@ -24,6 +24,7 @@ public class Subject {
     @OneToMany(mappedBy = "subject")
     private Set<Score> scores;
     private Period period;
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(
             name = "subject_user",

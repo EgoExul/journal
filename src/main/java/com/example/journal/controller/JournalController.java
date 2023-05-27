@@ -1,6 +1,6 @@
 package com.example.journal.controller;
 
-import com.example.journal.domain.User;
+import com.example.journal.service.GroupService;
 import com.example.journal.service.SubjectService;
 import com.example.journal.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class JournalController {
 
     private final SubjectService subjectService;
+    private final GroupService groupService;
     private final UserService userService;
 
     @GetMapping("/{id}")
@@ -23,9 +24,13 @@ public class JournalController {
         var user = userService.getById(id);
         log.info("USER: {}", user);
         model.addAttribute("user", user);
+        model.addAttribute("subjects", subjectService.getAllByUserId(id));
+        model.addAttribute("groups", groupService.getAllByUserId(id));
+        return "teacher-journal.html";
         if (user.getRole().getId() == 1L) {return "teacher-journal.html";
         } else {return "student-journal.html";
         }
     }
+
 }
 

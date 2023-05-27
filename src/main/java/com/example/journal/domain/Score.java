@@ -28,7 +28,6 @@ public class Score {
     private Instant dueDate;
     private Instant passDate;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
