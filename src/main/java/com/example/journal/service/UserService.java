@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -22,4 +23,16 @@ public class UserService {
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceAccessException("User not found, id: " + id));
     }
+
+    private UserRepository userRepository;
+
+    public boolean checkCredentials(String email, String password) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            return user.getPassword().equals(password);
+        }
+        return false;
+    }
+
 }
