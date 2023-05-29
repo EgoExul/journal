@@ -23,9 +23,9 @@ public class Score {
     private Long id;
     @Column(name = "`value`")
     private int value;
-    @Enumerated(EnumType.STRING)
-    private Type type;
-    private Instant dueDate;
+    @ManyToOne
+    @JoinColumn(name = "control_id")
+    private Control control;
     private Instant passDate;
 
     @ManyToOne
@@ -35,11 +35,5 @@ public class Score {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
-
-    public enum Type {
-        LAB,
-        EXAM,
-        ;
-    }
 
 }

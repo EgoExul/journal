@@ -26,8 +26,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
     @ManyToMany(mappedBy = "users")
     private Set<Group> groups;
@@ -35,5 +34,10 @@ public class User {
     private Set<Score> scores;
     @ManyToMany(mappedBy = "users")
     private Set<Subject> subjects;
+
+    public enum Role {
+        TEACHER,
+        STUDENT;
+    }
 
 }

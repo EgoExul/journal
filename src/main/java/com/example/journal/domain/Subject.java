@@ -14,16 +14,22 @@ import java.util.Set;
 @Entity
 @Table(name = "subjects")
 public class Subject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "subjects")
     @ToString.Exclude
-    private List<Group> groups;
+    private Set<Group> groups;
     @OneToMany(mappedBy = "subject")
     private Set<Score> scores;
-    private Period period;
+    @ManyToOne
+    @JoinColumn(name = "semester_id")
+    private Semester semester;
+    @OneToMany(mappedBy = "subject")
+    private List<Control> controls;
+
     @ToString.Exclude
     @ManyToMany
     @JoinTable(
