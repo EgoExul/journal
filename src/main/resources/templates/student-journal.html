@@ -68,12 +68,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-
-                        <td>
-                            <a></a>
-                        </td>
-
+                    <tr th:each="score : ${scores}">
+                        <td th:text="${score.value}"></td>
                     </tr>
 
                     </tbody>

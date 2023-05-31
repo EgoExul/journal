@@ -1,6 +1,7 @@
 package com.example.journal.controller;
 
 import com.example.journal.domain.Filter;
+import com.example.journal.domain.Score;
 import com.example.journal.domain.User;
 import com.example.journal.service.GroupService;
 import com.example.journal.service.ScoreService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -68,7 +71,10 @@ public class JournalController {
         model.addAttribute("user", user);
         model.addAttribute("subjects", subjectService.getAllByUserId(id));
         model.addAttribute("groups", groupService.getAllByUserId(id));
+        List<Score> scores = scoreService.getAll();
+        model.addAttribute("scores", scores);
         model.addAttribute("filter", filter);
+
         log.info("FILTER: {}", filter);
 
         if (user.getRole() == User.Role.TEACHER) {

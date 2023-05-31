@@ -2,6 +2,7 @@ package com.example.journal.service;
 
 import com.example.journal.domain.Group;
 import com.example.journal.domain.Score;
+import com.example.journal.domain.Subject;
 import com.example.journal.domain.User;
 import com.example.journal.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
