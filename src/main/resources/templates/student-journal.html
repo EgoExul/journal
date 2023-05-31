@@ -10,102 +10,80 @@
         <div class="header">
             <h1 class="header-title">Электронный журнал</h1>
         </div>
-        <img class="img" src="../../img/Profile.png">
+
+        <div>
+            <img class="img" src="#">
+            <p class="user" th:text="${user.firstName + ' ' + user.middleName + ' ' + user.lastName}"></p>
+        </div>
         <div class="profile">
             <a class="profile-btn" href="#" style="margin-right: 5px;">Профиль</a>
-            <a class="profile-btn" href="../../auth/auth.html">Выход</a>
+            <a class="profile-btn" th:href="login">Выход</a>
         </div>
 
         <div class="nav-btn">
             <a class="nav-linkBtn" href="../../group1/group1-1.html">Журнал</a>
         </div>
+        <div class="form-check" style="border: 1px solid; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
+            <form method="post" action="#" th:action="@{/{userId}(userId=${user.id})}" th:object="${filter}">
 
-        <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Предметы</button>
+                <p style="font-weight: bold;">Предметы</p>
+                <select class="" aria-label=".form-select-lg example">
+                    <option th:field="*{subjectId}" th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+                </select>
 
-            <div id="myDropdown" class="dropdown-content">
-                <tr th:each="subject : ${user.groups[0].subjects}">
-                    <a th:text="${subject.name}" href="">K
-                        <td th:text="${subject.name}"></td>
-                    </a>
-                </tr>
+                <input type="submit" class="dropbtn" ></input>
+            </form>
+        </div>
+
+            <div class="dropdown">
+                <button onclick="myFunction3()" class="dropbtn">1 семестр</button>
+                <div id="myDropdown3" class="dropdown-content">
+                    <a href="#">1 семестр</a>
+                    <a href="#">2 семестр</a>
+                    <a href="#">3 семестр</a>
+                    <a href="#">4 семестр</a>
+                    <a href="#">5 семестр</a>
+                    <a href="#">6 семестр</a>
+                    <a href="#">7 семестр</a>
+                    <a href="#">8 семестр</a>
+                </div>
             </div>
-        </div>
 
-        <div class="dropdown">
-            <button onclick="myFunction3()" class="dropbtn">1 семестр</button>
-            <div id="myDropdown3" class="dropdown-content">
-                <a href="#">1 семестр</a>
-                <a href="#">2 семестр</a>
-                <a href="#">3 семестр</a>
-                <a href="#">4 семестр</a>
-                <a href="#">5 семестр</a>
-                <a href="#">6 семестр</a>
-                <a href="#">7 семестр</a>
-                <a href="#">8 семестр</a>
+            <div>
+                <table class="table table-bordered" style="width: 79.5%;">
+                    <thead class="t-head">
+                    <tr>
+                        <a></a>
+                        <th colspan="7">Оценки</th>
+                        <th rowspan="2">Средний балл</th>
+                    </tr>
+                    <tr>
+                        <td>09.06.22</td>
+                        <td>10.06.22</td>
+                        <td>11.06.22</td>
+                        <td>12.06.22</td>
+                        <td>13.06.22</td>
+                        <td>14.06.22</td>
+                        <td>15.06.22</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                        <td>
+                            <a></a>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                    <div style="border: 1px solid; float: right;width: 20%; height: 302px;">
+
+                    </div>
+
+                </table>
             </div>
-        </div>
-
-        <div class="btn-download">
-            <a href="#">
-                <button class="btn-edit" type="button" name="download">Скачать</button>
-            </a>
-        </div>
-
-        <div>
-            <table class="table table-bordered">
-                <thead class="t-head">
-                <tr>
-                    <th rowspan="2">ФИО</th>
-                    <th colspan="12">Оценки</th>
-                    <th rowspan="2">Средний балл</th>
-                </tr>
-                <tr>
-                    <td>09.06.22</td>
-                    <td>10.06.22</td>
-                    <td>11.06.22</td>
-                    <td>12.06.22</td>
-                    <td>13.06.22</td>
-                    <td>14.06.22</td>
-                    <td>15.06.22</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Подмосткин Иван Николаевич</th>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                    <td>
-                        <a>1</a>
-                    </td>
-
-                </tr>
-
-                </tbody>
-            </table>
         </div>
 
         <script th:src="@{/js/script.js}"></script>

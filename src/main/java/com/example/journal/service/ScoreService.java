@@ -1,10 +1,14 @@
 package com.example.journal.service;
 
+import com.example.journal.domain.Group;
 import com.example.journal.domain.Score;
+import com.example.journal.domain.User;
 import com.example.journal.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
 
+import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
