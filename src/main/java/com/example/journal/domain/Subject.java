@@ -3,7 +3,6 @@ package com.example.journal.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.Period;
 import java.util.List;
 import java.util.Set;
 

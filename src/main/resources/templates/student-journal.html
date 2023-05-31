@@ -24,14 +24,16 @@
             <a class="nav-linkBtn" href="../../group1/group1-1.html">Журнал</a>
         </div>
         <div class="form-check" style="border: 1px solid; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
-            <form method="post" action="#" th:action="@{/{userId}(userId=${user.id})}" th:object="${filter}">
+            <form method="get" action="#" th:action="@{/user/{userId}(userId=${user.id},subjectId=${subjectId})}">
 
                 <p style="font-weight: bold;">Предметы</p>
-                <select class="" aria-label=".form-select-lg example">
-                    <option th:field="*{subjectId}" th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+                <select th:name="subjectId" aria-label=".form-select-lg example">
+                    <option hidden="" value="0">---</option>
+                    <option th:each="subject : ${subjects}" th:value="${subject.id}"
+                            th:text="${subject.name}"></option>
                 </select>
 
-                <input type="submit" class="dropbtn" ></input>
+                <input type="submit" class="dropbtn" />
             </form>
         </div>
 
@@ -68,8 +70,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="score : ${scores}">
-                        <td th:text="${score.value}"></td>
+                    <tr>
+                        <td th:each="score : ${scores}" th:text="${score.value}"></td>
                     </tr>
 
                     </tbody>

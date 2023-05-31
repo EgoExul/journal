@@ -21,4 +21,9 @@ public class GroupService {
     public List<Group> getAllByUserId(Long userId) {
         return repository.findAllByUsersIn(Collections.singletonList(userId));
     }
+
+    public Group getByIdAndSubject(Long id, List<Long> subjectIds) {
+        return repository.findByIdAndSubjectsIn(id, subjectIds)
+                .orElse(new Group());
+    }
 }

@@ -24,10 +24,8 @@ public class UserService {
                 .orElseThrow(() -> new ResourceAccessException("User not found, id: " + id));
     }
 
-    private UserRepository userRepository;
-
     public boolean checkCredentials(String email, String password) {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
+        Optional<User> optionalUser = repository.findByEmail(email);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             return user.getPassword().equals(password);

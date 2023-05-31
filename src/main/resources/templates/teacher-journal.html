@@ -1,316 +1,328 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <link th:href="@{/style/style.css}" rel="stylesheet"/>
-    <title>Семестр</title>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <link th:href="@{/style/style.css}" rel="stylesheet"/>
+        <title>Семестр</title>
+    </head>
 
-    <div class="header">
-        <h1 class="header-title">Электронный журнал</h1>
-    </div>
+    <body>
 
-    <div>
-        <img class="img" src="#">
-        <p class="user" th:text="${user.firstName + ' ' + user.middleName + ' ' + user.lastName}"></p>
-    </div>
-
-    <div class="profile">
-        <a class="profile-btn" href="#" style="margin-right: 5px;">Профиль</a>
-        <a class="profile-btn" th:href="login">Выход</a>
-    </div>
-
-    <div class="nav-btn">
-        <a class="nav-linkBtn" href="#" style="background-color: #c9c9c9; color: #000000;">Журнал</a>
-    </div>
-
-    <div class="form-check" style="border: 1px solid; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
-        <form method="post" action="#" th:action="@{/{userId}(userId=${user.id})}" th:object="${filter}">
-
-<!--            <div class="" style="display: inline-block; padding-left: 30px; margin-right: 20px; margin-top: 10px;">-->
-                <p style="font-weight: bold;">Предметы</p>
-                <select class="" aria-label=".form-select-lg example">
-                    <option th:field="*{subjectId}" th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
-                </select>
-<!--            </div>-->
-
-<!--            <div class="form-check" style="display: inline-block; padding-left: 30px; margin-right: 20px; margin-top: 10px;">-->
-                <p style="font-weight: bold;">Группы</p>
-                <select class="" aria-label=".form-select-lg example">
-                    <option th:field="*{groupId}" th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
-                </select>
-<!--            </div>-->
-
-            <input type="submit" class="dropbtn" ></input>
-
-        </form>
-    </div>
-
-    <div class="dropdown">
-        <button onclick="myFunction3()" class="dropbtn">1 семестр</button>
-
-        <div id="myDropdown3" class="dropdown-content">
-            <a href="#">1 семестр</a>
-            <a href="#">2 семестр</a>
-            <a href="#">3 семестр</a>
-            <a href="#">4 семестр</a>
-            <a href="#">5 семестр</a>
-            <a href="#">6 семестр</a>
-            <a href="#">7 семестр</a>
-            <a href="#">8 семестр</a>
+        <div class="header">
+            <h1 class="header-title">Электронный журнал</h1>
         </div>
-</div>
 
-<div>
-    <table class="table table-bordered">
-        <thead class="t-head">
-        <tr>
-            <th rowspan="2">№</th>
-            <th rowspan="2">ФИО</th>
-            <th colspan="7">Оценки</th>
-            <th rowspan="2">Средний балл</th>
-        </tr>
-        <tr>
-            <td>09.06.22</td>
-            <td>10.06.22</td>
-            <td>11.06.22</td>
-            <td>12.06.22</td>
-            <td>13.06.22</td>
-            <td>14.06.22</td>
-            <td>15.06.22</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th>1</th>
-            <th>Подмосткин Иван Николаевич</th>
-            <td>
-                <select class="select" name="type" id="score-0" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-1" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score1" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-2" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score2" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-3" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score3" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-4" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score4" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-5" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score5" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-6" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score6" disabled>
-            </td>
+        <div>
+            <img class="img" src="#">
+            <p class="user" th:text="${user.firstName + ' ' + user.middleName + ' ' + user.lastName}"></p>
+        </div>
 
-        </tr>
+        <div class="profile">
+            <a class="profile-btn" href="#" style="margin-right: 5px;">Профиль</a>
+            <a class="profile-btn" th:href="login">Выход</a>
+        </div>
 
-        <tr>
-            <th>2</th>
-            <th>Сахаров Егор Станиславович</th>
-            <td>
-                <select class="select" name="type" id="score-7" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score7" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-8" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score8" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-9" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score9" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-10" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score10" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-11" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score11" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-12" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score12" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-13" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score13" disabled>
-            </td>
+        <div class="nav-btn">
+            <a class="nav-linkBtn" href="#" style="background-color: #c9c9c9; color: #000000;">Журнал</a>
+        </div>
 
-        </tr>
+        <div class="form-check" style="border: 1px solid; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
+            <form method="get" action="#"
+                  th:action="@{/user/{userId}(userId=${user.id},subjectId=${subjectId},groupId=${groupId})}">
 
-        <tr>
-            <th>3</th>
-            <th>Архипов Лев Фёдорович</th>
-            <td>
-                <select class="select" name="type" id="score-14" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score14" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-15" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score15" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-16" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score16" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-17" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score17" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-18" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score18" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-19" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score19" disabled>
-            </td>
-            <td>
-                <select class="select" name="type" id="score-20" disabled>
-                    <option value="exam"></option>
-                    <option value="exam">Экз</option>
-                    <option value="lab">Лаб</option>
-                    <option value="test">Тест</option>
-                </select>
-                <input type="number" min="-100" max="100" id="score20" disabled>
-            </td>
+                <div class="" style="display: inline-block; padding-left: 30px; margin-right: 20px; margin-top: 10px;">
+                    <p style="font-weight: bold;">Предметы</p>
+                    <select th:name="subjectId" aria-label=".form-select-lg example">
+                        <option hidden="" value="0">---</option>
+                        <option th:each="subject : ${subjects}" th:value="${subject.id}"
+                                th:text="${subject.name}"></option>
+                    </select>
+                </div>
 
-        </tr>
+                <div class="form-check" style="display: inline-block; padding-left: 30px; margin-right: 20px; margin-top: 10px;">
+                    <p style="font-weight: bold;">Группы</p>
+                    <select th:name="groupId" aria-label=".form-select-lg example">
+                        <option hidden="" value="0">---</option>
+                        <option th:each="group : ${groups}"
+                                th:value="${group.id}" th:text="${group.name}"></option>
+                    </select>
+                </div>
 
-        </tbody>
-    </table>
-</div>
+                <input type="submit" class="dropbtn" />
 
-<div class="btn-form">
-    <a href="#">
-        <button class="btn-edit" onclick="disable()">Сохранить</button>
-    </a>
-</div>
+            </form>
+        </div>
 
-<div class="btn-form">
-    <a href="#">
-        <button class="btn-edit" onclick="enable()">Редактировать</button>
-    </a>
-</div>
+        <div th:if="${students!=null and !students.empty}">
+            <tr th:each="student : ${students}" >
+                <td th:text="${student.firstName}"></td>
+            </tr>
+        </div>
 
-<script th:src="@{/js/script.js}"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-        crossorigin="anonymous"></script>
+        <div class="dropdown">
+            <button onclick="myFunction3()" class="dropbtn">1 семестр</button>
 
-</body>
+            <div id="myDropdown3" class="dropdown-content">
+                <a href="#">1 семестр</a>
+                <a href="#">2 семестр</a>
+                <a href="#">3 семестр</a>
+                <a href="#">4 семестр</a>
+                <a href="#">5 семестр</a>
+                <a href="#">6 семестр</a>
+                <a href="#">7 семестр</a>
+                <a href="#">8 семестр</a>
+            </div>
+        </div>
+
+        <div>
+            <table class="table table-bordered">
+                <thead class="t-head">
+                <tr>
+                    <th rowspan="2">№</th>
+                    <th rowspan="2">ФИО</th>
+                    <th colspan="7">Оценки</th>
+                    <th rowspan="2">Средний балл</th>
+                </tr>
+                <tr>
+                    <td>09.06.22</td>
+                    <td>10.06.22</td>
+                    <td>11.06.22</td>
+                    <td>12.06.22</td>
+                    <td>13.06.22</td>
+                    <td>14.06.22</td>
+                    <td>15.06.22</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>1</th>
+                    <th>Подмосткин Иван Николаевич</th>
+                    <td>
+                        <select class="select" name="type" id="score-0" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-1" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score1" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-2" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score2" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-3" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score3" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-4" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score4" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-5" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score5" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-6" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score6" disabled>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <th>2</th>
+                    <th>Сахаров Егор Станиславович</th>
+                    <td>
+                        <select class="select" name="type" id="score-7" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score7" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-8" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score8" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-9" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score9" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-10" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score10" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-11" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score11" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-12" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score12" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-13" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score13" disabled>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <th>3</th>
+                    <th>Архипов Лев Фёдорович</th>
+                    <td>
+                        <select class="select" name="type" id="score-14" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score14" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-15" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score15" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-16" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score16" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-17" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score17" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-18" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score18" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-19" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score19" disabled>
+                    </td>
+                    <td>
+                        <select class="select" name="type" id="score-20" disabled>
+                            <option value="exam"></option>
+                            <option value="exam">Экз</option>
+                            <option value="lab">Лаб</option>
+                            <option value="test">Тест</option>
+                        </select>
+                        <input type="number" min="-100" max="100" id="score20" disabled>
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="btn-form">
+            <a href="#">
+                <button class="btn-edit" onclick="disable()">Сохранить</button>
+            </a>
+        </div>
+
+        <div class="btn-form">
+            <a href="#">
+                <button class="btn-edit" onclick="enable()">Редактировать</button>
+            </a>
+        </div>
+
+        <script th:src="@{/js/script.js}"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+                crossorigin="anonymous"></script>
+
+    </body>
 </html>

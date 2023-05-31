@@ -1,6 +1,5 @@
 package com.example.journal.controller;
 
-import com.example.journal.domain.Filter;
 import com.example.journal.domain.Score;
 import com.example.journal.domain.User;
 import com.example.journal.service.GroupService;
@@ -12,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -48,38 +47,26 @@ public class JournalController {
 //        return "login";
 //    }
 
-    @GetMapping("/{id}")
-    public String getJournal(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/user/{id}")
+    public String getJournal(Model model, @PathVariable("id") Long id,
+                             @RequestParam(required = false) Long subjectId,
+                             @RequestParam(required = false) Long groupId) {
         var user = userService.getById(id);
-        log.info("USER: {}", user);
         model.addAttribute("user", user);
         model.addAttribute("subjects", subjectService.getAllByUserId(id));
         model.addAttribute("groups", groupService.getAllByUserId(id));
-        model.addAttribute("filter", new Filter());
 
         if (user.getRole() == User.Role.TEACHER) {
+            if (subjectId != null && groupId != null) {
+                model.addAttribute("students",
+                        groupService.getByIdAndSubject(groupId, Collections.singletonList(subjectId)).getUsers());
+            }
+
             return "teacher-journal.html";
         } else {
-            return "student-journal.html";
-        }
-    }
+            List<Score> scores = scoreService.getAll();
+            model.addAttribute("scores", scores);
 
-    @PostMapping("/{id}")
-    public String getJournal(@PathVariable("id") Long id, @ModelAttribute Filter filter, Model model) {
-        var user = userService.getById(id);
-        log.info("USER: {}", user);
-        model.addAttribute("user", user);
-        model.addAttribute("subjects", subjectService.getAllByUserId(id));
-        model.addAttribute("groups", groupService.getAllByUserId(id));
-        List<Score> scores = scoreService.getAll();
-        model.addAttribute("scores", scores);
-        model.addAttribute("filter", filter);
-
-        log.info("FILTER: {}", filter);
-
-        if (user.getRole() == User.Role.TEACHER) {
-            return "teacher-journal.html";
-        } else {
             return "student-journal.html";
         }
     }
