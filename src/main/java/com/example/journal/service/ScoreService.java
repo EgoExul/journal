@@ -16,4 +16,8 @@ public class ScoreService {
     public List<Score> getByUserIdAndSubjectId(Long userId, Long subjectId) {
         return repository.findByUserIdAndSubjectId(userId, subjectId);
     }
+
+    public List<Score> getByUserIdsAndSubjectId(List<Long> userIds, Long subjectId) {
+        return repository.findByUserIdInAndSubjectIdOrderByControlDueDate(userIds, subjectId);
+    }
 }

@@ -34,6 +34,10 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private Set<Subject> subjects;
 
+    public String getFullName() {
+        return  lastName + " " + firstName + " " + middleName;
+    }
+
     public enum Role {
         TEACHER,
         STUDENT;

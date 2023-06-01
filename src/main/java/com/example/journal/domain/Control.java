@@ -1,10 +1,7 @@
 package com.example.journal.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.List;
@@ -31,11 +28,16 @@ public class Control {
     @OneToMany(mappedBy = "control")
     private List<Score> scores;
 
+    @Getter
+    @RequiredArgsConstructor
     public enum Type {
-        TEST,
-        LAB,
-        EXAM,
-        PRACTICE,
-        ATTENDANCE;
+
+        TEST("Тест"),
+        LAB("Лаба"),
+        EXAM("Экзамен"),
+        PRACTICE("Практика"),
+        ATTENDANCE("Посещаемость");
+
+        private final String name;
     }
 }

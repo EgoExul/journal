@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,6 +22,17 @@ public class UserService {
     public User getById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResourceAccessException("User not found, id: " + id));
+    }
+
+    public List<User> getByGroupAndSubject(Long groupId, Long subjectId) {
+        var students = repository.findByGroupsInAndRole(
+                Collections.singletonList(groupId), User.Role.STUDENT
+        );
+        students.forEach(u -> u.setScores(u.getScores().stream()
+                .filter(s -> s.getSubject().getId().equals(subjectId))
+                .sorted(Comparator.comparing(s -> s.getControl().getId()))
+                .collect(Collectors.toCollection(LinkedHashSet::new))));
+        return students;
     }
 
     public boolean checkCredentials(String email, String password) {

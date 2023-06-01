@@ -10,6 +10,4 @@ import java.util.Optional;
 @Repository
 public interface GroupRepository extends JpaRepository<Group, Long> {
     List<Group> findAllByUsersIn(List<Long> userIds);
-
-    Optional<Group> findByIdAndSubjectsIn(Long id, List<Long> subjectIds);
 }

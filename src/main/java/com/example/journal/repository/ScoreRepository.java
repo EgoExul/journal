@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ScoreRepository extends JpaRepository<Score, Long> {
-        List<Score> findByUserIdAndSubjectId(Long userId, Long subjectId);
+    List<Score> findByUserIdAndSubjectId(Long userId, Long subjectId);
+    List<Score> findByUserIdInAndSubjectIdOrderByControlDueDate(List<Long> userIds, Long subjectId);
+
 }
