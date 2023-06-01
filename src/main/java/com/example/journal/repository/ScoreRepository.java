@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ScoreRepository extends JpaRepository<Score, Long> {
-    List<Score> findAll();
+        List<Score> findByUserIdAndSubjectId(Long userId, Long subjectId);
+        List<Score> findByUserId(Long userId);
 }

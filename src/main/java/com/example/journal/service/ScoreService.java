@@ -21,4 +21,12 @@ public class ScoreService {
     public List<Score> getAll() {
         return repository.findAll();
     }
+
+    public List<Score> getByUserId(Long userId) {
+        return repository.findByUserId(userId);
+    }
+
+    public List<Score> getByUserIdAndSubjectId(Long userId, Long subjectId) {
+        return repository.findByUserIdAndSubjectId(userId, subjectId);
+    }
 }
