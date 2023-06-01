@@ -67,12 +67,9 @@ public class JournalController {
             List<Score> scores;
             if (subjectId != null) {
                 scores = scoreService.getByUserIdAndSubjectId(id, subjectId);
-            } else {
-                scores = scoreService.getByUserId(id);
+                model.addAttribute("scores", scores);
+                model.addAttribute("selectedSubjectId", subjectId);
             }
-            model.addAttribute("scores", scores);
-            model.addAttribute("selectedSubjectId", subjectId);
-
             return "student-journal.html";
         }
     }
