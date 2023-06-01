@@ -29,7 +29,7 @@
                 <p style="font-weight: bold;">Предметы</p>
                 <select th:name="subjectId" aria-label=".form-select-lg example">
                     <option hidden="" value="0">---</option>
-                    <option th:each="subject : ${subjects}" th:value="${subject.id}"
+                    <option th:each="subject : ${user.groups[0].subjects}" th:value="${subject.id}"
                             th:text="${subject.name}"></option>
                 </select>
 

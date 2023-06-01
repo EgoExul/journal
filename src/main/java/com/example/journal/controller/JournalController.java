@@ -61,7 +61,6 @@ public class JournalController {
                 var students = userService.getByGroupAndSubject(groupId, subjectId);
                 model.addAttribute("students", students);
                 model.addAttribute("subject", subjectService.getById(subjectId));
-
             }
 
             return "teacher-journal.html";
