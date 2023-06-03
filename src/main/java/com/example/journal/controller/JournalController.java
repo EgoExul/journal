@@ -68,6 +68,7 @@ public class JournalController {
             if (subjectId != null) {
                 var scores = scoreService.getByUserIdAndSubjectId(id, subjectId);
                 model.addAttribute("scores", scores);
+                model.addAttribute("subject", subjectService.getById(subjectId));
             }
 
             return "student-journal.html";

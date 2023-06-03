@@ -265,5 +265,5 @@ input{
 }
 
 .slacker {
-    background-color: #c90076
+    background-color: #c90076 !important;
 }
