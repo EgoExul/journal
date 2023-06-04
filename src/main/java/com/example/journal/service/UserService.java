@@ -35,13 +35,13 @@ public class UserService {
         return students;
     }
 
-    public boolean checkCredentials(String email, String password) {
+    public User getByEmail(String email, String password) {
         Optional<User> optionalUser = repository.findByEmail(email);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            return user.getPassword().equals(password);
+        if (optionalUser.isPresent() && optionalUser.get().getPassword().equals(password)) {
+            return optionalUser.get();
         }
-        return false;
+
+        return new User();
     }
 
 }

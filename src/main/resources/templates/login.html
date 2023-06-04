@@ -11,12 +11,12 @@
             <h1 class="auth-title">Электронный журнал</h1> 
             <h1 class="auth-input"><i>Авторизация</i></h1>
             <div class="form">
-                <form action="/authenticate" method="post">
-                    <input class="input" type="text" name="email" id="input_log" placeholder="Электронная почта" required>
-                    <input class="input" type="password" name="pass" id="input_pass" placeholder="Пароль" required>
+                <form th:object="${auth}" th:action="@{/login}" method="post">
+                    <input th:field="*{email}" class="input" type="text" name="email" id="input_log" placeholder="Электронная почта" required>
+                    <input th:field="*{password}" class="input" type="password" name="pass" id="input_pass" placeholder="Пароль" required>
+                    <input class="btn" type="submit" value="Войти">
                 </form>
             </div>
-            <button class="btn" type="submit">Авторизация</button>
         </div>
         
     </body>

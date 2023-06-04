@@ -1,6 +1,5 @@
 package com.example.journal.controller;
 
-import com.example.journal.domain.User;
 import com.example.journal.service.GroupService;
 import com.example.journal.service.ScoreService;
 import com.example.journal.service.SubjectService;
@@ -10,12 +9,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,23 +25,19 @@ public class JournalController {
     private final UserService userService;
     private final ScoreService scoreService;
 
-//    @GetMapping("/login")
-//    public String getUserJournal(@RequestParam("email") String email, @RequestParam("pass") String password,
-//                                 @PathVariable("id") Long id, Model model) {
-//        var user = userService.getById(id);
-//        log.info("USER: {}", user);
-//        model.addAttribute("user", user);
-//        model.addAttribute("subjects", subjectService.getAllByUserId(id));
-//        model.addAttribute("groups", groupService.getAllByUserId(id));
+//    @PostMapping("/login")
+//    public RedirectView authenticateUser(@ModelAttribute AuthDto auth, Model model) {
+//        var user = userService.getByEmail(auth.getEmail(), auth.getPassword());
 //
-//        // Проверка логина и пароля
-//        if (userService.checkCredentials(email, password)) {
-//            if (user.getRole().getId() == 1L) {
-//                return "teacher-journal.html"; // Перенаправление на страницу журнала учителя
-//            } else {
-//                return "student-journal.html"; // Перенаправление на страницу журнала студента
-//            }
-//        }
+//        return user.getId() == null
+//                ? new RedirectView("/login")
+//                : new RedirectView("/user/" + user.getId());
+//    }
+//
+//    @GetMapping("/login")
+//    public String getLoginForm(Model model) {
+//        model.addAttribute("auth", new AuthDto());
+//
 //        return "login";
 //    }
 
@@ -56,11 +50,13 @@ public class JournalController {
         model.addAttribute("subjects", subjectService.getAllByUserId(id));
         model.addAttribute("groups", groupService.getAllByUserId(id));
 
-        if (user.getRole() == User.Role.TEACHER) {
+        if (user.isTeacher()) {
             if (subjectId != null && groupId != null) {
                 var students = userService.getByGroupAndSubject(groupId, subjectId);
                 model.addAttribute("students", students);
                 model.addAttribute("subject", subjectService.getById(subjectId));
+                model.addAttribute("selectedSubjectId", subjectId);
+                model.addAttribute("selectedGroupId", groupId);
             }
 
             return "teacher-journal.html";
@@ -69,18 +65,25 @@ public class JournalController {
                 var scores = scoreService.getByUserIdAndSubjectId(id, subjectId);
                 model.addAttribute("scores", scores);
                 model.addAttribute("subject", subjectService.getById(subjectId));
+                model.addAttribute("selectedSubjectId", subjectId);
             }
 
             return "student-journal.html";
         }
     }
 
-    @PostMapping(path = "/user/{id}")
+    @PostMapping(
+            path = "/user/{id}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+    )
     public String saveJournal(Model model, @PathVariable("id") Long id,
                               @RequestParam(required = false) Long subjectId,
                               @RequestParam(required = false) Long groupId,
-                              @ModelAttribute ArrayList<StudentDto> studentsForm) {
-        log.info("Form: {}", studentsForm);
+                              @RequestBody ScoreDto scoreDto) {
+
+        log.info("scoreDto: {}", scoreDto);
+        scoreService.update(scoreDto.getId(), scoreDto.getValue());
+
         var user = userService.getById(id);
         model.addAttribute("user", user);
         model.addAttribute("subjects", subjectService.getAllByUserId(id));
@@ -98,24 +101,16 @@ public class JournalController {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public class FormDto {
-        private ArrayList<StudentDto> studentsForm;
+    public static class ScoreDto {
+        private Long id;
+        private Integer value;
     }
 
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public class StudentDto {
-        private Long id;
-        private List<ScoreDto> scores;
-
-        @Data
-        @AllArgsConstructor
-        @NoArgsConstructor
-        public class ScoreDto {
-            private Long controlId;
-            private Long id;
-            private Integer value;
-        }
+    public static class AuthDto {
+        private String email;
+        private String password;
     }
 }

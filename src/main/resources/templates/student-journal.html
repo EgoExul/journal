@@ -12,13 +12,11 @@
         </div>
 
         <div>
-            <img class="img" src="#">
             <p class="user" th:text="${user.firstName + ' ' + user.middleName + ' ' + user.lastName}"></p>
         </div>
 
         <div class="profile">
-            <a class="profile-btn" href="#" style="margin-right: 5px;">Профиль</a>
-            <a class="profile-btn" th:href="login">Выход</a>
+            <a class="profile-btn" th:href="@{/login}">Выход</a>
         </div>
 
         <div class="nav-btn">
@@ -33,7 +31,7 @@
                     <select th:name="subjectId" aria-label=".form-select-lg example">
                         <option hidden="" value="0">---</option>
                         <option th:each="subject : ${user.groups[0].subjects}" th:value="${subject.id}"
-                                th:text="${subject.name}"></option>
+                                th:text="${subject.name}" th:selected="${subject.id} == ${selectedSubjectId}"></option>
                     </select>
                 </div>
 
@@ -41,7 +39,7 @@
                     <p style="font-weight: bold;">Семестр</p>
                     <select aria-label=".form-select-lg example">
                         <option hidden="" value="0">---</option>
-                        <option>1 семестр</option>
+                        <option selected>1 семестр</option>
                         <option>2 семестр</option>
                         <option>3 семестр</option>
                         <option>4 семестр</option>
@@ -62,14 +60,21 @@
                     <table class="table table-bordered" style="width: 79.5%;">
                         <thead class="t-head">
                             <tr>
-                                <th th:each="control : ${subject?.controls}" th:text="${control.type.name}"></th>
+                                <th th:each="control : ${subject?.controls}" style="white-space: pre-line"
+                                    th:text="|${control.type.name}
+                                    Срок сдачи: ${#temporals.format(control.dueDate, 'dd-MM-yyyy')}|"></th>
                                 <th>Средний балл</th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr>
-                                <td th:each="score : ${scores}" th:text="${score.value}" th:classappend="${score.isSlacker ? 'slacker' : ''}"></td>
+                                <td th:each="score : ${scores}"
+                                    th:classappend="${score.isSlacker ? 'slacker' : ''}">
+                                    <input th:value="${score.value}" disabled>
+                                    <span th:if="${score.passDate}"
+                                          th:text="|Сдано: ${#temporals.format(score.passDate, 'dd-MM-yyyy')}|"></span>
+                                </td>
                             </tr>
                         </tbody>
 

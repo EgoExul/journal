@@ -23,13 +23,39 @@ window.onclick = function(event) {
   
 function disable() {
     [...document.querySelectorAll(".score")].forEach(element => element.disabled = true);
+
+    const groupId = document.getElementById("groupId").value;
+    const subjectId = document.getElementById("subjectId").value;
+    const userId = document.getElementById("userId").value;
+
+    fetch('/user/' + userId + '?subjectId=' + subjectId + '&groupId=' + groupId, {
+          method: 'GET'
+    });
 };
 
 function enable() {
     [...document.querySelectorAll(".score")].forEach(element => element.disabled = false);
 };
 
+function send(event) {
+    console.log('id: ' + event.target.id);
+    console.log('val: ' + event.target.value);
 
+    const groupId = document.getElementById("groupId").value;
+    const subjectId = document.getElementById("subjectId").value;
+    const userId = document.getElementById("userId").value;
+
+    let response = fetch('/user/' + userId + '?subjectId=' + subjectId + '&groupId=' + groupId, {
+          method: 'POST',
+          headers: {
+                'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: event.target.id,
+            value: event.target.value
+          })
+    });
+}
 
 /* Когда пользователь нажимает на кнопку,
 переключение между скрытием и отображением раскрывающегося содержимого */

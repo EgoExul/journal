@@ -5,6 +5,7 @@ import com.example.journal.repository.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,5 +20,13 @@ public class ScoreService {
 
     public List<Score> getByUserIdsAndSubjectId(List<Long> userIds, Long subjectId) {
         return repository.findByUserIdInAndSubjectIdOrderByControlDueDate(userIds, subjectId);
+    }
+
+    public void update(Long id, Integer value) {
+        repository.findById(id).ifPresent(s -> {
+            s.setValue(value);
+            s.setPassDate(Instant.now());
+            repository.save(s);
+        });
     }
 }

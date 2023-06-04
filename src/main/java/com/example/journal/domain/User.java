@@ -38,6 +38,10 @@ public class User {
         return  lastName + " " + firstName + " " + middleName;
     }
 
+    public boolean isTeacher() {
+        return this.role == Role.TEACHER;
+    }
+
     public enum Role {
         TEACHER,
         STUDENT;

@@ -13,13 +13,11 @@
         </div>
 
         <div>
-            <img class="img" src="#">
             <p class="user" th:text="${user.firstName + ' ' + user.middleName + ' ' + user.lastName}"></p>
         </div>
 
         <div class="profile">
-            <a class="profile-btn" href="#" style="margin-right: 5px;">Профиль</a>
-            <a class="profile-btn" th:href="login">Выход</a>
+            <a class="profile-btn" th:href="@{/login}">Выход</a>
         </div>
 
         <div class="nav-btn">
@@ -35,7 +33,7 @@
                     <select th:name="subjectId" aria-label=".form-select-lg example">
                         <option hidden="" value="0">---</option>
                         <option th:each="subject : ${subjects}" th:value="${subject.id}"
-                                th:text="${subject.name}"></option>
+                                th:text="${subject.name}" th:selected="${subject.id} == ${selectedSubjectId}"></option>
                     </select>
                 </div>
 
@@ -44,15 +42,17 @@
                     <select th:name="groupId" aria-label=".form-select-lg example">
                         <option hidden="" value="0">---</option>
                         <option th:each="group : ${groups}"
-                                th:value="${group.id}" th:text="${group.name}"></option>
+                                th:value="${group.id}" th:text="${group.name}"
+                                th:selected="${group.id} == ${selectedGroupId}"></option>
                     </select>
                 </div>
 
-                <div class="form-check" style="display: inline-block; padding-left: 30px; margin-right: 20px; margin-top: 10px;">
+                <div class="form-check" style="display: inline-block;
+                    padding-left: 30px; margin-right: 20px; margin-top: 10px;">
                     <p style="font-weight: bold;">Семестр</p>
                     <select aria-label=".form-select-lg example">
                         <option hidden="" value="0">---</option>
-                        <option>1 семестр</option>
+                        <option selected>1 семестр</option>
                         <option>2 семестр</option>
                         <option>3 семестр</option>
                         <option>4 семестр</option>
@@ -68,19 +68,21 @@
             </form>
         </div>
 
-        <form method="post" action="#" th:object="${studentsForm}"
-              th:action="@{/user/{userId}(userId=${user.id},subjectId=${subjectId},groupId=${groupId})}">
+        <form id="studentsForm" action="#">
             <div>
-                <input hidden th:name="subjectId" th:value="${subject?.id}">
+                <input hidden th:name="userId" th:id="userId" th:value="${user.id}">
+                <input hidden th:name="subjectId" th:id="subjectId" th:value="${subject?.id}">
                 <input hidden th:if="${students!=null and !students.empty}"
-                       th:name="groupId" th:value="${students[0].groups[0].id}">
+                       th:name="groupId" th:id="groupId" th:value="${students[0].groups[0].id}">
+
                 <table class="table table-bordered">
                     <thead class="t-head">
                     <tr>
                         <th>№</th>
                         <th>ФИО</th>
-                        <th th:each="control : ${subject?.controls}"
-                            th:text="${control.type.name}"></th>
+                        <th th:each="control : ${subject?.controls}" style="white-space: pre-line"
+                            th:text="|${control.type.name}
+                                Срок сдачи: ${#temporals.format(control.dueDate, 'dd-MM-yyyy')}|"></th>
                         <th>Средний балл</th>
                     </tr>
                     </thead>
@@ -90,22 +92,15 @@
                             <th th:text="${stat.count}"></th>
 
                             <th th:text="${student.getFullName}"></th>
-                            <input hidden th:name="|studentsForm[${stat.index}].id|" th:value="${student.id}">
 
                             <td th:each="score,itemStat : ${student.scores}"
                                 th:classappend="${score.isSlacker ? 'slacker' : ''}">
-                                <input hidden th:name="|studentsForm[${stat.index}].scores[${itemStat.index}].id|"
-                                       th:value="${score.id}">
 
-                                <input hidden
-                                       th:name="|studentsForm[${stat.index}].scores[${itemStat.index}].controlId|"
-                                       th:value="${score.control.id}">
-
-                                <input hidden
-                                       th:name="|studentsForm[${stat.index}].scores[${itemStat.index}].value|"
-                                       th:value="${score.value}">
-                                <input th:value="${score.value}"
+                                <input th:name="${score.id}"
+                                       th:id="${score.id}"
+                                       th:value="${score.value}" onchange="send(event)"
                                        class="score" type="number" min="-100" max="100" disabled>
+                                <span th:if="${score.passDate}" th:text="|Сдано: ${#temporals.format(score.passDate, 'dd-MM-yyyy')}|"></span>
                             </td>
                         </tr>
                     </tbody>
@@ -113,17 +108,13 @@
             </div>
 
             <div class="btn-form">
-                <a href="#">
-                    <button type="submit" class="btn-edit" onclick="disable()">Сохранить</button>
-                </a>
+                <button class="btn-edit" onclick="disable()">Обновить</button>
             </div>
 
         </form>
 
         <div class="btn-form">
-            <a href="#">
-                <button class="btn-edit" onclick="enable()">Редактировать</button>
-            </a>
+            <button class="btn-edit" onclick="enable()">Редактировать</button>
         </div>
 
         <script th:src="@{/js/script.js}"></script>
