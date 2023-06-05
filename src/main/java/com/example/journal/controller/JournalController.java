@@ -66,6 +66,8 @@ public class JournalController {
                 model.addAttribute("scores", scores);
                 model.addAttribute("subject", subjectService.getById(subjectId));
                 model.addAttribute("selectedSubjectId", subjectId);
+                boolean hasDebt = scores.stream().anyMatch(score -> score.getValue() == null);
+                model.addAttribute("hasDebt", hasDebt);
             }
 
             return "student-journal.html";

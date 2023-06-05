@@ -54,37 +54,49 @@
             </form>
         </div>
 
-            <form method="post" action="#" th:object="${studentsForm}"
-                  th:action="@{/user/{userId}(userId=${user.id},subjectId=${subjectId})}">
-                <div>
-                    <table class="table table-bordered" style="width: 79.5%;">
-                        <thead class="t-head">
-                            <tr>
-                                <th th:each="control : ${subject?.controls}" style="white-space: pre-line"
-                                    th:text="|${control.type.name}
-                                    Срок сдачи: ${#temporals.format(control.dueDate, 'dd-MM-yyyy')}|"></th>
-                                <th>Средний балл</th>
-                            </tr>
-                        </thead>
+        <div style="display: flex;">
+            <div style="flex-grow: 1; margin-right: 5px;">
+                <table class="table table-bordered" style="width: 100%; margin-bottom: 0px;">
+                    <thead class="t-head">
+                    <tr>
+                        <th th:each="control : ${subject?.controls}" style="white-space: pre-line"
+                            th:text="|${control.type.name}
+                        Срок сдачи: ${#temporals.format(control.dueDate, 'dd-MM-yyyy')}|"></th>
+                        <th>Средний балл</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:each="score : ${scores}" th:classappend="${score.isSlacker ? 'slacker' : ''}">
+                            <input th:value="${score.value}" disabled>
+                            <span th:if="${score.passDate}" th:text="|Сдано: ${#temporals.format(score.passDate, 'dd-MM-yyyy')}|"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                        <tbody>
-                            <tr>
-                                <td th:each="score : ${scores}"
-                                    th:classappend="${score.isSlacker ? 'slacker' : ''}">
-                                    <input th:value="${score.value}" disabled>
-                                    <span th:if="${score.passDate}"
-                                          th:text="|Сдано: ${#temporals.format(score.passDate, 'dd-MM-yyyy')}|"></span>
-                                </td>
-                            </tr>
-                        </tbody>
+            <div style="border: 1px solid; width: 40%; height: 302px; padding: 5px;">
+                <table>
+                    <tr>
+                        <td th:if="${selectedSubjectId == null}">
+                            <div th:each="score : ${user.scores}" th:if="${score.isSlacker}" style="display: block;">
+                                Задолженность по <span th:text="${score.subject.name}"></span>
+                                (Тип контроля: <span th:text="${score.control.type.name}"></span>)
+                            </div>
+                        </td>
+                        <td th:if="${selectedSubjectId}">
+                            <div th:each="score : ${scores}" th:if="${score.isSlacker}" style="display: block;">
+                                Задолженность по <span th:text="${score.subject.name}"></span>
+                                (Тип контроля: <span th:text="${score.control.type.name}"></span>)
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-                        <div style="border: 1px solid; float: right;width: 20%; height: 302px;">
-                            <p>Задолженность по Системы искусственного интеллекта: экзамен. Срок сдачи: 12.05.2023</p>
-                        </div>
 
-                    </table>
-                </div>
-            </form>
 
         <script th:src="@{/js/script.js}"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
